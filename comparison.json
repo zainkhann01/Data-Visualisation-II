@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 380,
+  "title": {
+    "text": "Trend between 2013-2020(revenue generated in million $'s)",
+    "anchor": "middle",
+    "fontSize": 15
+  },
+  "projection": {"type": "equirectangular"},
+  "layer": [
+
+{
+  "data": {"url": "https://raw.githubusercontent.com/zainkhann01/Data-Visualisation-II/main/industries.csv"},
+  "encoding": {
+    "x": {"field": "year", "type": "temporal", "title": "year"},
+    "y": {"field": "revenue", "type": "quantitative", "title": "revenue"},
+    "color": {
+      "condition": {
+        "param": "hover",
+        "field":"industry",
+        "type":"nominal",
+        "legend": null,
+        "scale": {
+ "domain": [
+ "retail",
+ "mining"
+ ],
+ "range": [
+ "#A80E00",
+ "#ff9999"
+ ]
+ }
+      },
+      "value": "grey"
+    },
+    "opacity": {
+      "condition": {
+        "param": "hover",
+        "value": 1
+      },
+      "value": 0.2
+    }
+  },
+  "layer": [{
+    "params": [{
+      "name": "hover",
+      "value": [{"industry": "mining"}],
+      "select": {
+        "type": "point",
+        "fields": ["industry"],
+        "on": "mouseover"
+      }
+    }],
+    "mark": {"type": "line", "strokeWidth": 8, "stroke": "transparent" , "tooltip": true }
+  }, {
+    "mark": "line"
+  }, {
+    "encoding": {
+      "x": {"aggregate": "max", "field": "year" },
+      "y": {"aggregate": {"argmax": "year"}, "field": "revenue"}
+    },
+    "layer": [{
+      "mark": {"type": "circle"}
+    }, {
+      "mark": {"type": "text", "align": "left", "dx": 4},
+      "encoding": {"text": {"field":"industry", "type": "nominal"}}
+    }]
+  }],
+  "config": {"view": {"stroke": null}}
+}
+  ]
+}

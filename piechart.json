@@ -1,0 +1,43 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A simple pie chart with labels.",
+  "height": 400,
+  "width": 610,
+  "title": {
+    "text": "Mining and retail sectors contribution in total revenue, 2020.",
+    "anchor": "middle",
+    "fontSize": 15
+  },
+  
+  "data": {
+    "url": "https://raw.githubusercontent.com/zainkhann01/Data-Visualisation-II/main/piechart.csv"
+  },
+  "encoding": {
+    "theta": {"field": "Revenue(in billions)", "type": "quantitative", "stack": true},
+    "color": {
+      "field": "Industry", 
+      "type": "nominal",
+      "scale": {
+ "domain": [
+ "Retail",
+ "Mining",
+ "Others"
+ ],
+ "range": [
+ "#A80E00",
+ "#ff9999",
+ "#FFC30F"
+ ]
+ }
+      }
+  },
+  "layer": [{
+    "mark": {"type": "arc", "outerRadius": 100 , "tooltip": true}
+  }, {
+    "mark": {"type": "text", "radius": 120 , "fontSize": 15},
+    "encoding": {
+      "text": {"field": "proportions", "type": "nominal"}
+    }
+  }]
+}
+

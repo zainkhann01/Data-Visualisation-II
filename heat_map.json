@@ -1,0 +1,48 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 550,
+    "height": 371,
+    "data": {
+        "url": "https://raw.githubusercontent.com/zainkhann01/Data-Visualisation-II/main/testing.csv"
+    },
+    "title": {
+        "text": "Monthly variations in Retail Trade Industry Revenue during a 20-year period (in million $)",
+        "anchor": "middle",
+        "fontSize": 15
+      },
+    "config": {
+        "view": {
+            "strokeWidth": 0,
+            "step": 13
+        },
+        "axis": {
+            "domain": false
+        }
+    },
+    "mark": { "type": "circle" , "tooltip":true},
+    "encoding": {
+        "x": {
+            "field": "Date",
+            "timeUnit": "date",
+            "type": "ordinal",
+            "title": "year",
+            "axis": {
+                "labelAngle": 0,
+                "format": "%e"
+            }
+        },
+        "y": {
+            "field": "Date",
+            "timeUnit": "month",
+            "type": "ordinal",
+            "title": "Month"
+        },
+        "color": {
+            "field": "revenue by retail industry",
+            "type": "quantitative",
+            "legend": {
+                "title": null
+            }
+        }
+    }
+  }
